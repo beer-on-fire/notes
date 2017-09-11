@@ -1,3 +1,33 @@
+
+# HTML笔记整理 #
+
+1. div 不设置高度，高度可以被内容撑开 | div 不设置宽度，宽度跟随父级
+
+2. `<bdo>`标签允许你指定文字方向并重载用于文本方向计算的双向算法
+
+3. `<figure>` 标签规定独立的流内容（图像、图表、照片、代码等等）。`figure` 元素的内容应该与主内容相关，但如果被删除，则不应对文档流产生影响。使用`<figcaption>`元素为`figure`添加标题（caption）
+
+4. `<small>` 标签将旁注 (side comments) 呈现为小型文本
+
+5. `<mark>` 标签表现高亮文本。
+
+6. `scoped` 属性是一个布尔属性。如果使用该属性，则样式仅仅应用到 style 元素的父元素及其子元素。
+
+7.  win7中 宋体 下 英文特殊字符的宽度（如空格），是字体大小的一半
+
+8. 两个词中间的距离 = word-spacing + 2*letter-spacing + 空格；宋体中，文字右边一般会保留1px的空隙
+
+9. 元素的占位大小: content(width/height) + padding + border +margin ;   元素的显示大小: content(width/height) + padding + border
+
+## 语义化：
+> web语义化是指通过HTML标记表示页面包含的信息，包含了HTML标签的语义化和css命名的语义化。 HTML标签的语义化是指：通过使用包含语义的标签（如h1-h6）恰当地表示文档结构 css命名的语义化是指：为html标签添加有意义的class，id补充未表达的语义，如Microformat通过添加符合规则的class描述信息 为什么需要语义化：
+> 
+	1.	去掉样式后页面呈现清晰的结构
+	2.	盲人使用读屏器更好地阅读
+	3.  搜索引擎更好地理解页面，有利于收录
+	4.  便团队项目的可持续运作及维护
+
+
 # CSS笔记整理 #
 
 
@@ -57,6 +87,11 @@
     A：
 	-	会形成。
 	-	BFC:如果一个元素符合了成为BFC的条件，该元素内部元素的布局和定位就和外部元素互不影响(除非内部的盒子建立了新的 BFC)，是一个隔离了的独立容器。
+   > BFC作用：
+   
+	-	 包含浮动元素(使父级边框包住子级)
+	-	 阻止margin向外传递
+	-	 不被浮动元素覆盖
 
    > 会触发BFC的条件有：
 
@@ -86,6 +121,59 @@
 
 ---------------
 #以往笔记
+
+### 盒模型
+标准盒模型：
+	width/height = content;
+	可视宽/高 =  content + padding + border;
+
+怪异盒模型：
+	width/height = 可视宽/高;
+	content = width - padding - border; 
+
+
+### float: 浮动
+
+	1. 在一行显示,父级的宽度放不下了，会自己折行
+	2. 支持宽高等样式
+	3. 不设置宽度的时候，宽度由内容撑开
+	4. 会按照我们指定的方向移动，碰到父级的边界或者前边的浮动元素停止
+	5. 元素浮动之后，上下margin不在叠加
+	6. 脱离文档流(标准流) -- 元素在页面不在占位置	
+-	文档流是文档中可显示对象在排列时所占用的位置。
+-	元素浮动之后，就撑不开父级的高度了，必须要给父级加浮动，或者进行清浮动处理
+
+### 清浮动：使浮动元素依然可以撑开父级的高度
+
+
+1. 在浮动元素下边添加
+```
+.clearFix {
+	clear: both;
+}
+```
+2. 在浮动元素下边添加 
+```
+<br clear= "all"/>
+.clear: all / left / right;
+```
+3. 给浮动元素的父级加 
+```
+.clearFix:after { content: ""; display: block;clear: both;}
+```
+-	元素浮动之后，如果父级的高度可以固定，就给父级设置高度，如果父级的高度需要内容撑开，就给父级清浮动
+
+### Resize
+-	允许用户修改元素的宽高
+```
+Resize   {
+	None；不允许
+	Vertical；垂直
+	Horizontal；横向
+	Both
+}
+```
+-	必须配合overflow:auto使用。
 
 ### box-sizing 盒模型设置
     -   border-box 设置为怪异盒模型
@@ -124,6 +212,44 @@ even（偶数）    如： p:nth-child(4) p标签父级下的第4个子元素 �
 
     -   :first-line 文本第一行
 
+------------------------
+
+## 移动端
+1.viewport 视口
+
+- 不设置viewport时，视口宽度一般为980
+- `<meta name="viewport" content="width=400">`
+- 部分安卓手机不支持设置或具体的数值
+- `<meta name="viewport" content="width=device-width">`
+- width=device-width 和设备宽度保持一致
+- 可以改变视口宽度大小
+
+2.DPI
+
+- 每平方英寸所能打印像素点的个数
+- DPI越大 像素也就越大，像素比越高，显示的东西就越小
+
+3.像素比window.devicePixelRatio DPR
+
+- 可以在JS提取但不能设置
+	- 1px的内容放大N倍显示
+	- 像素比为2，整个页面放大两倍显示
+
+4.user-scalable 是否允许用户缩放（no||yes）
+
+-	IOS10不支持，近乎无解
+-	默认是yes
+
+initial-scale 初始缩放比例：
+
+	-	minimum-scale 最小缩放比例
+	-	maximum-scale 最大缩放比例
+
+页面宽度 =  device-width/scale;
+
+
+
+------------------------
 
 ## Media Query 媒体查询
     -  媒询 设置了媒体类型之后，那只有在对应的媒体下，媒询中的样式才会被解析
@@ -515,3 +641,36 @@ even（偶数）    如： p:nth-child(4) p标签父级下的第4个子元素 �
 	-	正切：Math.tan();
 	-	直角三角形，对边和临边的比值
 	
+---------------------
+## 渐变
+1、linear-gradient 线性渐变
+
+- 渐变颜色设置，或者说过渡点,每个点之间用","隔开，如：linear-gradient(red,blue,yellow)
+- 过渡点的位置设置
+	- 百分比
+	- 具体数值
+	- 当两个颜色的过渡点位置是重叠的，颜色和颜色之间就没有过渡，而是直接跳转
+- 渐变方向设置
+	- 关键字设置起点(需要加各个浏览器的前缀之后，才能被识别)
+	- 角度设置
+		- 0deg从下向上渐变
+		- 角度增加为顺时针旋转	
+- repeating-linear-gradient 重复渐变
+- 渐变属性 background-image	
+
+2、 radial-gradient 径向渐变	
+
+- 渐变颜色设置，或者说过渡点,每个点之间用","隔开
+- 过渡点的位置设置
+	- 百分比
+	- 具体数值
+	- 当两个颜色的过渡点位置是重叠的，颜色和颜色之间就没有过渡，而是直接跳转
+- 大小设置
+	- 具体数值，火狐老版本不支持,以及加了前缀moz依然不支持
+	- 最近端，最近角，最远端，最远角，包含或覆盖 closest-side, closest-corner, farthest-side, farthest-corner, contain or cover	
+- 形状设置 ellipse||circle
+	- 形状设置和大小只能同时设置一个 	
+- 圆心点设置	
+	- 必须加前缀才可以设置
+	- 关键字
+	- 具体数值
