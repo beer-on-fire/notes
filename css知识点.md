@@ -1,91 +1,66 @@
+# css3 #
 
-# HTML笔记整理 #
+### CSS3新特性：
 
-1. div 不设置高度，高度可以被内容撑开 | div 不设置宽度，宽度跟随父级
-
-2. `<bdo>`标签允许你指定文字方向并重载用于文本方向计算的双向算法
-
-3. `<figure>` 标签规定独立的流内容（图像、图表、照片、代码等等）。`figure` 元素的内容应该与主内容相关，但如果被删除，则不应对文档流产生影响。使用`<figcaption>`元素为`figure`添加标题（caption）
-
-4. `<small>` 标签将旁注 (side comments) 呈现为小型文本
-
-5. `<mark>` 标签表现高亮文本。
-
-6. `scoped` 属性是一个布尔属性。如果使用该属性，则样式仅仅应用到 style 元素的父元素及其子元素。
-
-7.  win7中 宋体 下 英文特殊字符的宽度（如空格），是字体大小的一半
-
-8. 两个词中间的距离 = word-spacing + 2*letter-spacing + 空格；宋体中，文字右边一般会保留1px的空隙
-
-9. 元素的占位大小: content(width/height) + padding + border +margin ;   元素的显示大小: content(width/height) + padding + border
-
-## 语义化：
-> web语义化是指通过HTML标记表示页面包含的信息，包含了HTML标签的语义化和css命名的语义化。 HTML标签的语义化是指：通过使用包含语义的标签（如h1-h6）恰当地表示文档结构 css命名的语义化是指：为html标签添加有意义的class，id补充未表达的语义，如Microformat通过添加符合规则的class描述信息 为什么需要语义化：
-> 
-	1.	去掉样式后页面呈现清晰的结构
-	2.	盲人使用读屏器更好地阅读
-	3.  搜索引擎更好地理解页面，有利于收录
-	4.  便团队项目的可持续运作及维护
-
-
-# CSS笔记整理 #
-
-
--	Q: css是否区分大小写？
+- 新增选择器     p:nth-child(n){color: rgba(255, 0, 0, 0.75)}
+- 弹性盒模型     display: flex;
+- 多列布局       column-count: 5;
+- 媒体查询       @media (max-width: 480px) {.box: {column-count: 1;}}
+- 个性化字体     @font-face{font-family: BorderWeb; src:url(BORDERW0.eot);}
+- 颜色透明度     color: rgba(255, 0, 0, 0.75);
+- 圆角           border-radius: 5px;
+- 渐变           background:linear-gradient(red, green, blue);
+- 阴影           box-shadow:3px 3px 3px rgba(0, 64, 128, 0.3);
+- 倒影           box-reflect: below 2px;
+- 文字装饰       text-stroke-color: red;
+- 文字溢出       text-overflow:ellipsis;
+- 背景效果       background-size: 100px 100px;
+- 边框效果       border-image:url(bt_blue.png) 0 10;
+- 转换
+  - 旋转          transform: rotate(20deg);
+  - 倾斜          transform: skew(150deg, -10deg);
+  - 位移          transform: translate(20px, 20px);
+  - 缩放          transform: scale(.5);
+- 平滑过渡       transition: all .3s ease-in .1s;
+- 动画           @keyframes anim-1 {50% {border-radius: 50%;}} animation: anim-1 1s;
  
-	A: 
+-----------
+## 面试题整理：
+
+###	Q1: css是否区分大小写？
+
+#### A1: 
 	-	不区分，html和css都对大小写不严格，但为了可读性而采用小写
 
-----------
 
--	Q： 替换元素和非替换元素？
-
-	A： 
+###	Q2： 替换元素和非替换元素？
+#### A2： 
 	-	替换元素是浏览器根据其标签的元素与属性来判断显示具体的内容。如(X)HTML中的`<img>、<input>、<textarea>、<select>、<object>`都是替换元素，这些元素都没有实际的内容。
 	-	(X)HTML 的大多数元素是不可替换元素，他们将内容直接告诉浏览器，将其显示出来。比如`<p>、<div>`
 
-----------
 
--	Q: 	设置`p`的`font-size:10rem`，当用户重置或拖曳浏览器窗口时，文本大小是否会也随着变化？
+###	Q3: 	设置`p`的`font-size:10rem`，当用户重置或拖曳浏览器窗口时，文本大小是否会也随着变化？
+#### A3: 
+	-	不会，`rem`是以`html`根元素中`font-size`的大小为基准的相对度量单位，文本的大小不会随着窗口的大小改变而改变。
 	
-	A: 
-	-	不会，`rem`是以`html`根元素中`font-size`的大小为基准的相对度量单位，文本的大小不会随着窗口的大小改变而改变。	
-
-
-----------
-
--	Q： 伪类选择器`:checked`将作用与`input`类型为`radio`或者`checkbox`,不会作用于`option`
-
-	A:
+###	Q4： 伪类选择器`:checked`将作用与`input`类型为`radio`或者`checkbox`,不会作用于`option`
+#### A4:
 	-	不对。
+	> :root选择器用匹配文档的根元素。在HTML中根元素始终是HTML元素。
 
 
-----------
-
-> :root选择器用匹配文档的根元素。在HTML中根元素始终是HTML元素。
-
-----------
-
--	Q:`translate()`方法能移动一个元素在z轴上的位置？
-
-    A: 
+###	Q5:`translate()`方法能移动一个元素在z轴上的位置？
+#### A5: 
 	-	不能。`translate()`方法只能改变x轴，y轴上的位移。
 
-----------
-
--	Q:  `only` 选择器的作用是？
-
-    A：
+###	Q6:  `only` 选择器的作用是？
+#### A6：
 	-	停止旧版本浏览器解析选择器的其余部分。
-
     -	only 用来指定某种特定的媒体类型，可以用来排除不支持媒体查询的浏览器。其实only很多时候是用来对那些不支持Media Query 但却支持Media Type 的设备隐藏样式表的。其主要有：支持媒体特性（Media Queries）的设备，正常调用样式，此时就当only 不存在；对于不支持媒体特性(Media Queries)但又支持媒体类型(Media Type)的设备，这样就会不读了样式，因为其先读only 而不是screen；另外不支持Media Qqueries 的浏览器，不论是否支持only，样式都不会被采用。
   
------------
-
--	Q: `overflow:hidden` 是否形成新的块级格式化上下文？
-	
-    A：
-	-	会形成。
+###	Q7: `overflow:hidden` 是否形成BFC（Block Formatting Contexts）块级格式化上下文？	
+#### A7：
+	-	会形成BFC（Block Formatting Contexts）块级格式化上下文。
 	-	BFC:如果一个元素符合了成为BFC的条件，该元素内部元素的布局和定位就和外部元素互不影响(除非内部的盒子建立了新的 BFC)，是一个隔离了的独立容器。
    > BFC作用：
    
@@ -99,35 +74,162 @@
     - overflow的值不为visible。
     - display的值为table-cell, table-caption, inline-block 中的任何一个。
     - position的值不为relative 和static。
+    
+  > BFC的作用
    
------------
+	 -	清除内部浮动：对子元素设置浮动后，父元素会发生高度塌陷，也就是父元素的高度变为0。解决这个问题，只需要把把父元素变成一个BFC就行了。 常用的办法是给父元素设置overflow:hidden。
+	 -	上下margin重合问题，可以通过触发BFC来解决
+   
 
--	Q: `screen`关键词是指设备物理屏幕的大小还是指浏览器的视窗？
-
-    A: 
+###	Q8: `screen`关键词是指设备物理屏幕的大小还是指浏览器的视窗？
+#### A8: 
 	-	浏览器视窗
 
------------
+### Q9： 为何会出现浏览器兼容性问题？如何解决？
+#### A9：
+-	为何出现?
+	-	同一产品，版本越老 bug 越多
+	-	同一产品，版本越新，功能越多
+	-	不同产品，不同标准，不同实现方式
+-	如何解决？
+	1. 要不要做
+		-	产品的角度（产品的受众、受众的浏览器比例、效果优先还是基本功能优先）
+		-	成本的角度 (有无必要做某件事)
+	2. 做到什么程度
+		-	让哪些浏览器支持哪些效果
+	3. 如何做
+		-	根据兼容需求选择技术框架（库/jq）
+		-	根据兼容需求选择兼容工具（html5shiv.js、respond.js、css reset、normalize.css、Modernizr）
+		-	postCss提供了一个解析器，它能够将 CSS 解析成抽象语法树。	
+		-	条件注释、CSS Hack、js 能力检测做一些修补
+			-	CSS Hack原理：利用不同浏览器对CSS的支持和解析结果不一样编写针对特定浏览器样式。
+				- 	常见的hack有
+			  	- 	属性hack
+			  	- 	选择器hack
+			  	- 	IE条件注释	
+	4. 两种方案
+		-	渐进增强(progressive enhancement): 针对低版本浏览器进行构建页面，保证最基本的功能，然后再针对高级浏览器进行效果、交互等改进和追加功能达到更好的用户体验
+		-	优雅降级 (graceful degradation): 一开始就构建完整的功能，然后再针对低版本浏览器进行兼容。
 
-#TIPS:
-> 浏览器CSS匹配顺序：
+### Q10： 如何居中一个浮动元素？
+#### A10： 
+-	父元素和子元素同时左浮动，然后父元素相对左移动50%，再然后子元素相对右移动50%，或者子元素相对左移动-50%也就可以了
+![](https://i.imgur.com/H12yAIB.png)	
 
--    浏览器CSS匹配不是从左到右进行查找，而是从右到左进行查找。比如`#divBox p span.red{color:red;}`，浏览器的查找顺序如下：先查找html中所有class='red'的span元素，找到后，再查找其父辈元素中是否有p元素，再判断p的父元素中是否有id为divBox的div元素，如果都存在则匹配上。浏览器从右到左进行查找的好处是为了尽早过滤掉一些无关的样式规则和元素。
+### Q11: css实现水平垂直居中
+#### A11:
+-	负边距+定位：水平垂直居中（Negative Margin）
+     * 使用绝对定位将content的定点定位到body的中心，然后使用负margin（content宽高的一半），
+     * 将content的中心拉回到body的中心，已到达水平垂直居中的效果。
+![](https://i.imgur.com/GUBEpki.png)
 
-> `display:none` 和`visibilty:hidden`的区别：
+### Q12： 三栏布局,中间自适应？
+#### A12: 
+-	自身浮动法。左栏左浮动，右栏右浮动
+测试代码：[https://github.com/beer-on-ice/Example/blob/master/css/%E4%B8%89%E6%A0%8F%E5%B8%83%E5%B1%80/index.html](https://github.com/beer-on-ice/Example/blob/master/css/%E4%B8%89%E6%A0%8F%E5%B8%83%E5%B1%80/index.html)
+-	margin负值法
+测试代码：[https://github.com/beer-on-ice/Example/blob/master/css/%E4%B8%89%E6%A0%8F%E5%B8%83%E5%B1%80/index2.html](https://github.com/beer-on-ice/Example/blob/master/css/%E4%B8%89%E6%A0%8F%E5%B8%83%E5%B1%80/index2.html)
+-	绝对定位法。左右两栏采用绝对定位，分别固定于页面的左右两侧，中间的主体栏用左右margin值撑开距离
+测试代码：[https://github.com/beer-on-ice/Example/blob/master/css/%E4%B8%89%E6%A0%8F%E5%B8%83%E5%B1%80/index3.html](https://github.com/beer-on-ice/Example/blob/master/css/%E4%B8%89%E6%A0%8F%E5%B8%83%E5%B1%80/index3.html)
 
--    `display:none`和`visibility:hidden`都是把网页上某个元素隐藏起来的功能，但两者有所区别，使用`visibility:hidden`属性会使对象不可见，而 `display:none`属性会使这个对象彻底消失,不占高度。
+### Q13：`display: none;` 与 `visibility: hidden;` 的区别
+#### A13:
+- 	相同：它们都能让元素不可见
+- 	区别：
+  	- 	`display:none`;会让元素完全从渲染树中消失，渲染的时候不占据任何空间；`visibility: hidden`;不会让元素从渲染树消失，渲染师元素继续占据空间，只是内容不可见
+
+### Q14：CSS3新增伪类有那些？
+#### A14:
+```
+
+p:first-of-type 选择属于其父元素的首个 <p> 元素的每个 <p> 元素。
+p:last-of-type  选择属于其父元素的最后 <p> 元素的每个 <p> 元素。
+p:only-of-type  选择属于其父元素唯一的 <p> 元素的每个 <p> 元素。
+p:only-child        选择属于其父元素的唯一子元素的每个 <p> 元素。
+p:nth-child(2)  选择属于其父元素的第二个子元素的每个 <p> 元素。
+
+:after          在元素之前添加内容,也可以用来做清除浮动。
+:before         在元素之后添加内容
+:enabled        
+:disabled       控制表单控件的禁用状态。
+:checked        单选框或复选框被选中
+
+```
+### Q15:为什么要初始化CSS样式
+#### A15:
+-	因为浏览器的兼容问题，不同浏览器对有些标签的默认值是不同的，如果没对CSS初始化往往会出现浏览器之间的页面显示差异
+
+### Q16:display:inline-block 什么时候会显示间隙？
+#### A16:
+-	移除空格、使用margin负值、使用font-size:0、letter-spacing、word-spacing
+
+### Q17: 请列举几种隐藏元素的方法
+
+* visibility: hidden;   这个属性只是简单的隐藏某个元素，但是元素占用的空间任然存在
+* opacity: 0;           CSS3属性，设置0可以使一个元素完全透明
+* position: absolute;   设置一个很大的 left 负值定位，使元素定位在可见区域之外
+* display: none;        元素会变得不可见，并且不会再占用文档的空间。
+* transform: scale(0);  将一个元素设置为缩放无限小，元素将不可见，元素原来所在的位置将被保留
+* `<div hidden="hidden">` HTML5属性,效果和display:none;相同，但这个属性用于记录一个元素的状态
+* height: 0;            将元素高度设为 0 ，并消除边框
+* filter: blur(0);      CSS3属性，将一个元素的模糊度设置为0，从而使这个元素“消失”在页面中
+
+### Q18: 请解释一下 CSS3 的 Flexbox（弹性盒布局模型）以及适用场景？
+#### A18:
+- Flexbox 用于不同尺寸屏幕中创建可自动扩展和收缩布局
+
+### Q19: 在CSS样式中常使用 px、em 在表现上有什么区别？
+#### A19:
+* px 相对于显示器屏幕分辨率，无法用浏览器字体放大功能
+* em 值并不是固定的，会继承父级的字体大小： em = 像素值 / 父级font-size
+
+### Q20:在CSS样式中常使用 px、em 在表现上有什么区别？
+#### A20:
+* px 相对于显示器屏幕分辨率，无法用浏览器字体放大功能
+* em 值并不是固定的，会继承父级的字体大小： em = 像素值 / 父级font-size
 
 
----------------
-#以往笔记
+### Q21: CSS优化、提高性能的方法有哪些？
+#### A21:
+* 多个css合并，尽量减少HTTP请求
+* 将css文件放在页面最上面
+* 移除空的css规则
+* 避免使用CSS表达式
+* 选择器优化嵌套，尽量避免层级过深
+* 充分利用css继承属性，减少代码量
+* 抽象提取公共样式，减少代码量
+* 属性值为0时，不加单位
+* 属性值为小于1的小数时，省略小数点前面的0
+* css雪碧图
+
+### Q22:`::before` 和 `:after` 中双冒号和单冒号有什么区别？
+#### A22:
+* 在 CSS 中伪类一直用 : 表示，如 :hover, :active 等
+* 伪元素在CSS1中已存在，当时语法是用 : 表示，如 :before 和 :after
+* 后来在CSS3中修订，伪元素用 :: 表示，如 ::before 和 ::after，以此区分伪元素和伪类
+* 由于低版本IE对双冒号不兼容，开发者为了兼容性各浏览器，继续使使用 :after 这种老语法表示伪元素
+* 综上所述：::before 是 CSS3 中写伪元素的新语法； :after 是 CSS1 中存在的、兼容IE的老语法
+
+### Q23：怎么让Chrome支持小于12px 的文字？
+#### A23：
+1. 以图换字
+2. 
+```css
+  .shrink{
+    -webkit-transform:scale(0.8);
+    -o-transform:scale(1);
+    display:inline-block;
+  }
+```
+## 以往学习笔记 
 
 ### 盒模型
-标准盒模型：
+-	box-sizing属性主要用来控制元素的盒模型的解析模式。默认值是content-box。
+	-	标准盒模型：
 	width/height = content;
 	可视宽/高 =  content + padding + border;
 
-怪异盒模型：
+	-	怪异盒模型：
 	width/height = 可视宽/高;
 	content = width - padding - border; 
 
@@ -174,11 +276,17 @@ Resize   {
 }
 ```
 -	必须配合overflow:auto使用。
-
-### box-sizing 盒模型设置
-    -   border-box 设置为怪异盒模型
-	-   content-box 设置为标准盒模型
-
+------------
+### 选择器
+- id选择器（ # myid）
+- 类选择器（.myclassname）
+- 标签选择器（div, h1, p）
+- 相邻选择器（h1 + p）
+- 子选择器（ul > li）
+- 后代选择器（li a）
+- 通配符选择器（ * ）
+- 属性选择器（a[rel = "external"]）
+- 伪类选择器（a:hover, li:nth-child）
 ### 属性选择器
     -   E [attr] 找到所有具有attr属性的E类型元素
     -   E [attr="value"] 找到所有具有attr属性的E类型元素,并且属性名为Value
@@ -674,3 +782,19 @@ initial-scale 初始缩放比例：
 	- 必须加前缀才可以设置
 	- 关键字
 	- 具体数值
+
+
+
+
+
+
+-----------
+
+#TIPS:
+> 浏览器CSS匹配顺序：
+
+-    浏览器CSS匹配不是从左到右进行查找，而是从右到左进行查找。比如`#divBox p span.red{color:red;}`，浏览器的查找顺序如下：先查找html中所有class='red'的span元素，找到后，再查找其父辈元素中是否有p元素，再判断p的父元素中是否有id为divBox的div元素，如果都存在则匹配上。浏览器从右到左进行查找的好处是为了尽早过滤掉一些无关的样式规则和元素。
+
+> `display:none` 和`visibilty:hidden`的区别：
+
+-    `display:none`和`visibility:hidden`都是把网页上某个元素隐藏起来的功能，但两者有所区别，使用`visibility:hidden`属性会使对象不可见，而 `display:none`属性会使这个对象彻底消失,不占高度。
